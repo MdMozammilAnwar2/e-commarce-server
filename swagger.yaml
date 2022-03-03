@@ -1,0 +1,52 @@
+openapi: "3.0.0"
+info: 
+  title: e-commerce application
+  description: this is an api which has been developed to sell t-shirt online
+  version: 1.0.0
+  contact: 
+    url: "https://angular-prod-app.herokuapp.com/"
+    email: mozammilmd6@gmail.com
+    
+
+servers:
+  - url: "{protocol}://localhost:4001/api/{version}"
+    description: for local host
+    variables:
+      version:
+        enum:
+          - v1
+          - v2
+        default: v1
+      protocol:
+        enum:
+          - https
+          - http
+        default: http
+
+components:
+  securitySchemes:
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: token
+    BearerAuth:
+      type: http
+      scheme: bearer 
+paths:
+  /dummy:
+    get:
+      tags:
+        - Home
+      summary: returns a greeting message from lco
+      responses:
+        200:
+          description: All good success
+          content:
+            application/json:
+              schema:
+                type: string
+                example: "mystring"
+        400:
+          description: Bad request
+        500: 
+          description: All good success
